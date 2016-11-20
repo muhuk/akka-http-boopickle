@@ -30,4 +30,4 @@ Note that you still need to create picklers for your types. See [BooPickle docum
 
 Copyright 2016 Atamert Ölçgen. 
 
-akka-http-boopickle released with Apache License, Version 2.0, same as BooPicle. See [LICENSE](LICENSE) file.
+akka-http-boopickle released with Apache License, Version 2.0, same as BooPickle. See [LICENSE](LICENSE) file.
