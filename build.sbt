@@ -7,12 +7,12 @@ scalaVersion := "2.12.10"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % "10.1.10",
+  "com.typesafe.akka" %% "akka-stream" % "2.5.25",
   "io.suzaku" %% "boopickle" % "1.3.1"
 )
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.5.25" % Test,
-  "com.typesafe.akka" %% "akka-stream" % "2.5.25" % Test,
   "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.25" % Test,
   "com.typesafe.akka" %% "akka-http-testkit" % "10.1.10" % Test,
   "org.scalactic" %% "scalactic" % "3.0.0" % Test,
