@@ -2,7 +2,10 @@
 .cache-tests
 .classpath
 .project
+.bloop/
+.metals/
 .settings/
 bin/
+project/
 target/
 

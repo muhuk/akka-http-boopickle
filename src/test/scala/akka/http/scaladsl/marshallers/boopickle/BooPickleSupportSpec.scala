@@ -1,9 +1,5 @@
 package akka.http.scaladsl.marshallers.boopickle
 
-import org.scalatest.Finders
-import org.scalatest.Matchers
-import org.scalatest.WordSpec
-
 import akka.http.scaladsl.marshalling.ToResponseMarshallable.apply
 import akka.http.scaladsl.model.ContentTypes
 import akka.http.scaladsl.model.HttpEntity
@@ -17,6 +13,9 @@ import boopickle.Default.stringPickler
 import boopickle.Default.Pickle
 import boopickle.Default.Unpickle
 import boopickle.Pickler
+import org.scalatest.Finders
+import org.scalatest.Matchers
+import org.scalatest.WordSpec
 
 class BooPickleSupportTest extends WordSpec with Matchers with ScalatestRouteTest with BooPickleSupport with Directives {
   case class Foo(bar: String, baz: Long)
@@ -48,7 +47,9 @@ class BooPickleSupportTest extends WordSpec with Matchers with ScalatestRouteTes
 
   "unmarshall only booPickleMediaType" in {
     Post("/", HttpEntity(ContentTypes.`application/octet-stream`, Pickle.intoBytes(Foo("hi", 2L)).array())) ~> testRoutes ~> check {
-      rejection shouldEqual UnsupportedRequestContentTypeRejection(Set(booPickleContentType))
+      rejection.isInstanceOf[UnsupportedRequestContentTypeRejection]
+      rejection.asInstanceOf[UnsupportedRequestContentTypeRejection].getSupported.size() shouldEqual 1
+      rejection.asInstanceOf[UnsupportedRequestContentTypeRejection].getSupported.iterator.next.matches(booPickleContentType)
     }
   }
 }
